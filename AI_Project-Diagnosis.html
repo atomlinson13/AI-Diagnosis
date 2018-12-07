@@ -1,0 +1,654 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="jquery.min.js.download"></script>
+    <script src="bootstrap.min.js.download"></script>
+<style>
+#box1 .checkbox, #box2 .checkbox {
+    display: block;
+    width: 50%;
+    float: left !important;
+    margin: 0px !important;
+}
+.checkbox, .radio-inline {
+    /* position: relative; */
+     display: block; 
+    padding-left: 0px; 
+    margin-bottom: 0;
+    font-weight: 400;
+    vertical-align: left; 
+    cursor: pointer;
+}
+
+.boxes {
+    width: auto;
+    float: left;
+    display: none;
+  /*/  border: 1px solid grey;*/
+}
+
+.checkbox, .radio-inline {
+    display: block;
+    padding-left: 30px;
+    margin-bottom: 0;
+    font-weight: 200;
+    vertical-align: left;
+    cursor: pointer;
+}
+
+.checkbox label, .radio label {
+    min-height: 32px;
+    padding-left: 20px;
+    margin-bottom: 0;
+    font-weight: 400;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+
+.hiddenBox {
+    display: none;
+}
+
+.row.content {height: 1500px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+    
+    .jumbotron {
+    background-image: url(https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    background-position: 50% 50% !important;
+    filter: opacity;
+    padding: 59px;
+    filter: opacity(38%);
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 101%;
+    z-index: -1;
+    height: 200px;
+}
+div#headings {
+    height: 200px !important;
+    padding: 36px;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    word-spacing: 0em;
+    letter-spacing: 0.1em;
+}
+p#diag, p#candidates {
+    color: #3f82cd;
+    font-weight: 800;
+    word-spacing: 0em;
+    letter-spacing: 2px;
+    padding: 0px;
+    margin-top: 0px;
+    line-height: 10px;
+}
+
+
+#headings h1 {
+    font-size: 2.1em;
+    font-weight: bold;
+    font-family: unset;
+}
+
+.container-fluid {
+    padding-top: 19px;
+}
+.h1, .h2, .h3, h1, h2, h3, h4 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+span#found {
+    color: #fb4f4f;
+    font-size: .7em;
+    font-weight: 600;
+}
+.newCol {
+    width: 32%;
+    float: left;
+        margin-bottom: 20px;
+}
+div#secondLevelPhy {
+    width: 100%;
+}
+@media only screen and (min-width : 1025px) {
+.row {
+    min-width: 1100px;
+}
+.row #headings2 {
+    min-width: 942px;
+}
+button#find {
+    float: right;
+}
+}
+span#finding {
+    color: black;
+    font-weight: 300;
+    font-size: 0.6em;
+    word-spacing: 0px;
+    letter-spacing: 1px;
+}
+div#headings2 {
+    height: auto;
+    border: 2px solid #ece8e8;
+    padding: 13px;
+    margin: 14px;
+}
+
+div#headings2 p {
+    height: auto !important;
+    padding: 11px 20px;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    width: 100%;
+    line-height: 0px;
+    padding: 9px;
+}
+</style>
+</head>
+
+<body>
+<div id="headings">
+  <h1>Symptom Checker</h1>      
+  <p>Diagnose your Symptoms</p>
+</div>
+<div class="jumbotron"></div>
+
+<div class="container-fluid">
+
+  <div class="row content">
+    <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+
+                <div class="row" id="headings2">
+                <div class="col-sm-10">
+                <p id="candidates">Possible Illnesses: <span id="finding"></span></p>
+                <p id="diag">Your Diagnoses: <span id="found"></span></p></div>
+                <div class="col-sm-2"><button id="find" type="button" class="btn btn-primary">Find Illness</button></div>
+                </div>
+                <br>
+
+            <div class="row">
+              <div class="col-sm-3" id="psychology-img"><img src="head.jpg" alt="..." class="img-thumbnail" height="250" width="100%"></div>
+              <div class="col-sm-9">
+                  <h4 style="font-variant:small-caps;">What kind of Symptoms are you experiencing?</h4>
+                     <div id="box">
+                        <div id="Initial" class="start">
+                            <div class="checkbox"><label for="in1"><input id="in1" type="checkbox" class="radio" name="initialBox" value="Physical">Physical</label></div>
+                            <div class="checkbox"><label for="in2"><input id="in2" type="checkbox" class="radio" name="initialBox" value="Mental">Mental</label></div>
+                            <div class="checkbox"><label for="in3"><input id="in3" type="checkbox" class="radio" name="initialBox" value="Both">Both</label></div>
+                        </div>
+                    </div>  
+              </div>
+              <script>
+                $('input[name="initialBox"]').on('change', function() {
+                   $('input[name="initialBox"]').not(this).prop('checked', false);
+
+                   $(this).siblings('input[name="initialBox"]').prop('checked', false);
+                });
+
+              </script>
+            </div><br>
+      <div class="row">
+          <div class="col-sm-3" id="psychical-img">
+            <img src="pexels-photo-1573823.jpeg" alt="..." class="img-thumbnail"></br>
+            <br>
+            <img src="head-hurt.jpg" alt="..." class="img-thumbnail">
+            </br>
+          </div>
+      <div class="col-sm-9">
+      <h4 id="type" style="font-variant:small-caps;"></h4>
+        <div id="secondLevelPhy" class="boxes"></div>
+      <br>
+        </div>
+      </div>
+
+</div>
+    <div class="col-sm-1">
+</div>
+  </div>
+</div>
+    <div id="msg-pane"></div>
+    
+
+
+<script>
+    function printMessage(msg) {
+        document.getElementById('msg-pane').innerHTML += msg;
+    }
+
+    function printlnMessage(msg) {
+        document.getElementById('msg-pane').innerHTML += msg + '<br>';
+    }
+
+    function clearMessage() {
+        document.getElementById('msg-pane').innerHTML = '';
+    }
+</script>
+
+<script>
+
+    var physical = ['Runny or Blocked Nose', 'Headaches', 'Temperature below 100', 'Temperature over 100', 'Chills', 'Low Energy', 'Irritability', 'Vomiting'];
+    var mental = ['Concentration Problems', 'Restlessness'];
+
+    var rules = {};
+
+    rules['Flu'] = [
+    	['Symptoms Develop Suddenly'],
+        ['Excessive Sweating', 'Temperature over 100', 'Chills'],
+        ['Vomiting'],
+        ['Diarrhea'],
+        ['Runny or Blocked Nose']];
+
+    rules['Cold'] = [
+    	['Temperature below 100'],
+    	['Sore Throat'], 
+    	['Runny or Blocked Nose'],  
+    	['Cough'],  
+    	['Slight Body Aches'],
+        ['Chills']];
+
+    rules['Food Poisoning'] = [
+        ['Symptoms Develop Suddenly'],
+    	['Abdominal Cramps'], 
+    	['Vomiting'],  
+        ['Diarrhea'],
+    	['Temperature below 100'], 
+    	['Headaches'], 
+    	['Weakness']];
+
+    rules['Depression'] = [
+    	['Slight Body Aches'], 
+    	['Headaches'], 
+    	['Back Pain'], 
+    	['Concentration Problems'], 
+    	['Low Energy'],
+        ['Irritability'], 
+        ['Loss of Appetite'],
+     	['Extreme Sleep Changes']];
+
+   rules['Stomache Feeling Sick'] = [['Nausea'], ['Vomiting'], ['Diarrhea'], ['Loss of Appetite']];
+
+   rules['Anxiety'] = [
+   		['Slight Body Aches'],
+        ['Tension'], 
+   		['Irritability'],
+   		['Dizziness'], 
+   		['Excessive Sweating'], 
+   		['Concentration Problems'], 
+   		['Low Energy'],  
+   		['Headaches'], 
+   		['Insomnia'],  
+   		['Restlessness'], 
+   		['Rapid Heartbeat']];
+
+
+   rules['Concentration Problems'] = [['Short Attention Span', 'Constantly Fidgetting']];
+
+   rules['Fever'] = [['Excessive Sweating', 'Temperature over 100'], ['Temperature over 100', 'Chills']];
+
+   rules['Mild Fever'] = [['Temperature below 100', 'Chills'], ['Some Sweating', 'Slight Chills']];
+
+
+   rules['Indigestion'] = [
+   		['Feeling full or heavy'], 
+   		['Belching', 'Fart'], 
+   		['Bloating'], 
+   		['Food Reflux'],
+        ['Vomiting']]; 
+
+    rules['Meningitis'] =  [
+    	['Symptoms Develop Suddenly'], 
+    	['Fever'], 
+    	['Headaches'], 
+    	['Skin Irritation'],
+    	['Stiff Neck'], 
+    	['Light Sensitivity'], 
+    	['Drowsiness'], 
+    	['Seizures']];
+
+
+
+
+    
+    var facts = [];  // It will be filled when the user clicks the button
+    var illnesses = ['Meningitis', 'Indigestion', 'Anxiety', 'Depression', 'Food Poisoning', 'Cold', 'Flu'];
+    var initial =['Headaches', 'Stomache Feeling Sick', 'Fever', 'Mild Fever', 'Nose', 'Chills', 'Low Energy', 'Irritability'];
+    var candidates =[]; 
+    var symptoms = [];
+
+    /*
+    *   Obtain the facts (i.e., observations) from the user,
+    *   save then into the queue, 'facts', and
+    *   invoke 'find()' to find what illness is.
+    */
+    
+$(document).ready(function() {
+		$("input[name='temps']").change(function() {
+   			 if(this.checked) {
+   			 	$(".hiddenBox").css('display', 'block');
+   			 } else {
+   			 	$(".hiddenBox").css('display', 'none');
+
+   			 }	
+   		});
+
+		$("input[name='initialBox']").change(function() {
+            udpateInitialSymptoms();
+            
+            $("input[name='property']").change(function() {
+                updateAllSymptoms(this);
+            });
+        });
+
+        function udpateInitialSymptoms(){
+            var symptomsHTML = "";
+
+            $.each($("input[name='initialBox']:checked"), function(){
+                var currentFind = $(this).val();
+
+                if(currentFind =="Mental"){
+                    $("#type").text( "Mental Symptoms" );
+                } else if(currentFind =="Physical"){
+                    $("#type").text( "Physical Symptoms" );
+                } else {
+                    $("#type").text( "Both Physical & Mental Symptoms" );
+                }
+                var count = -1;
+                symptomsHTML += "<div class='newCol'>";
+                if(currentFind =="Mental" || currentFind == "Both") { 
+                    for(var element in mental){
+                        count++;
+                        if(symptoms.indexOf(mental[element]) == -1){
+                            symptoms.push(mental[element]);
+                        }
+                        var checked = facts.indexOf(mental[element]) == -1 ? "" : "checked";
+                        if(count==6) {
+                            symptomsHTML += "</div>"
+                            symptomsHTML += "<div class='newCol'>";
+                            count = 0;
+                        }
+                        symptomsHTML += "<div class='checkbox'><label><input type='checkbox' name='property' value='"+mental[element]+"' "+checked+">"+mental[element]+"</label></div>";
+                    
+                    }
+                }
+                if(currentFind =="Physical" || currentFind == "Both") { 
+                    for(var element in physical){
+                        count++;
+                        if(symptoms.indexOf(physical[element]) == -1){
+                            symptoms.push(physical[element]);
+                        }
+                        var checked = facts.indexOf(physical[element]) == -1 ? "" : "checked";
+                        if(count===6) {
+                            symptomsHTML += "</div>"
+                            symptomsHTML += "<div class='newCol'>";
+                            count=0;
+                        }
+
+                        symptomsHTML += "<div class='checkbox'><label><input type='checkbox' name='property' value='"+physical[element]+"' "+checked+">"+physical[element]+"</label></div>";
+                    }
+                }
+            });
+
+            $("#secondLevelPhy").html(symptomsHTML);
+            if(symptomsHTML == ""){
+                $("#secondLevelPhy").css("display", "none");
+                facts = [];
+            }
+            else{
+                $("#secondLevelPhy").css("display", "block");
+            }
+        }
+
+        function updateAllSymptoms(el){
+            var elementIndex = facts.indexOf(el.value);
+            if(elementIndex == -1){
+                facts.push(el.value);
+            }
+            else{
+                facts.splice(elementIndex, 1);
+            }
+            candidates = [];
+
+            // Do forward chaining to determine the top candidates that it could be, return back here and show the input boxes accordingly. 
+            findInitial();
+
+            for (var i = 0; i < candidates.length; i++) {
+                console.log("FC" + FC(rules, facts, candidates[i]));
+                console.log("Candidates" + candidates[i]);
+            }
+
+            //console.log("candidates: "+candidates);
+            //console.log("facts: "+facts);
+            var problems = [];
+            clearMessage();
+            for(var i = 0; i < candidates.length; i++){
+                if(BC(rules, facts, candidates[i])){
+                    if(problems.indexOf(candidates[i]) == -1){
+                       problems.push(candidates[i]);
+                }
+                }
+            }
+
+            console.log("problems: "+problems);
+            // Get all symptoms from each candidate in one array
+            for(var i = 0; i < candidates.length; i++){
+                var candidate = candidates[i];
+
+                for(var j = 0; j < rules[candidate].length; j++){
+                    for(var k = 0; k < rules[candidate][j].length; k++){
+                        if(symptoms.indexOf(rules[candidate][j][k]) == -1){
+                            symptoms.push(rules[candidate][j][k]);
+                        }
+                    }
+                }
+            }
+
+            //console.log(symptoms);
+            var count = -1;
+           
+            // Create html for each symptom
+            var thirdLevelElements = "";
+            thirdLevelElements += "<div class='newCol'>";
+            for(var i = 0 ; i < symptoms.length; i++){
+                count++;
+                var checked = facts.indexOf(symptoms[i]) == -1 ? "" : "checked";
+                if(count==6) {
+                            thirdLevelElements += "</div>"
+                            thirdLevelElements += "<div class='newCol'>";
+                            count = 0;
+                }
+                thirdLevelElements += "<div class='checkbox'><label><input type='checkbox' name='property' value='"+symptoms[i]+"' "+checked+">"+symptoms[i]+"</label></div>";
+            }
+            $("#secondLevelPhy").html(thirdLevelElements);
+            
+            if(thirdLevelElements == ""){
+                $("#secondLevelPhy").css("display", "none");
+            }
+            else{
+                $("#secondLevelPhy").css("display", "block");
+            }
+
+             $("input[name='property']").change(function() {
+                updateAllSymptoms(this);
+                $("#finding").empty(); 
+                $("#finding").append(candidates.join(',  '));
+            });
+        }
+
+        $("#find").click(function() {
+            var currentFind;
+            $.each($("input[name='property']:checked"), function(){     
+                if(facts.indexOf($(this).val()) == -1) {       
+                    facts.push($(this).val());
+                    currentFind = $(this).val();
+                 }   
+            });
+
+
+            //Do backward chaining to determine what illness it is by matching all the newly selected facts
+     		findIllness();
+        });
+    });
+
+    function findInitial() 
+    {
+        clearMessage();
+        for (var i = 0; i < illnesses.length; i++) {
+            FC(rules, facts, illnesses[i]);
+        }
+    }
+
+
+
+    /*
+    *   Calls the backward chaining function for each of the candidates that the forward chaining algorithm has selected.
+    *   It then picks what symptom is true, if any, and returns it to the user
+    */
+    
+    function findIllness()
+    {    
+        var diagnoses ='Could not identify your illness';
+        for (var i = 0; i < illnesses.length; i++) {
+            if(BC(rules, facts, illnesses[i])===true) {
+                diagnoses = illnesses[i]; 
+            } 
+        }
+        $("#found").empty();
+        $("#found").append(diagnoses);
+    }
+
+function FC(rules, facts, ps)
+{
+    if(isFact(facts,ps))
+       return true;
+
+    if (!hasRules(rules, ps))  
+        return false;
+
+    for (var i = 0; i < rules[ps].length; i++)  
+    {
+        for (var j = 0; j < rules[ps][i].length; j++) {
+
+        	if(FC(rules, facts, rules[ps][i][j])){
+                console.log(FC(rules, facts, rules[ps][i][j]));    
+                if(candidates.indexOf(ps) == -1) {
+                    candidates.push(ps);
+                }
+                return true;
+            }
+       }
+
+    }
+    return false;
+}
+
+// function FC(rules, facts, ps)
+// {
+//     console.log('ps ' + ps);
+//     console.log('facts ' + facts);
+//     // if ps is a fact
+//     if(isFact(facts,ps))
+//        return true;
+
+        
+//     if (!thereAreRules(rules, ps))  
+//         return false;
+    
+//     var valid = false;
+//     for (var i = 0; i < rules[ps].length; i++)  
+//     {
+//         console.log('rules[ps]: ' + rules[ps]);
+
+//         for (var j = 0; j < rules[ps][i].length; j++) {
+//          console.log('rules[ps][i]: ' + rules[ps][i]);
+//          console.log('rules[ps][i][j]: ' + rules[ps][i][j]);
+//             if(FC(rules, facts, rules[ps][i][j]) == true) {
+//                    valid = true;
+//             } else {
+//                valid = false;
+//             }   
+
+//        }
+
+//     if (valid) {
+//         console.log("ps added: " + ps);
+//         candidates.push(ps);
+//         return true;
+//     } 
+       
+//     }
+
+//     return valid;
+// }
+
+
+    function BC(rules, facts, ps)
+	{
+	    // if ps is a fact
+	    if(isFact(facts,ps))
+	       return true;
+
+	    if (!hasRules(rules, ps))  
+	        return false;
+	    
+	    var valid = true;
+        for (var i = 0; i < rules[ps].length; i++)  
+        {
+            for (var j = 0; j < rules[ps][i].length; j++) {
+                if(BC(rules, facts, rules[ps][i][j])) {
+                    valid = true;
+                } else {
+                    valid = false;
+                    return false;
+                }	
+            }
+        }
+	    return valid;
+	}
+
+/*Functions used from ZooKeeper Assignment */ 
+function isFact(facts, ps)
+{
+    if (facts.indexOf(ps) >= 0)  
+        return true;
+    else
+        return false;
+}
+/*Functions used from ZooKeeper Assignment */ 
+function hasRules(rules, ps)
+{
+    if (rules[ps] != undefined) 
+        return true;
+    else
+        return false;
+} 
+
+</script>
+
+</body></html>
