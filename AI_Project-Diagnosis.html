@@ -568,45 +568,6 @@ function FC(rules, facts, ps)
     return false;
 }
 
-// function FC(rules, facts, ps)
-// {
-//     console.log('ps ' + ps);
-//     console.log('facts ' + facts);
-//     // if ps is a fact
-//     if(isFact(facts,ps))
-//        return true;
-
-        
-//     if (!thereAreRules(rules, ps))  
-//         return false;
-    
-//     var valid = false;
-//     for (var i = 0; i < rules[ps].length; i++)  
-//     {
-//         console.log('rules[ps]: ' + rules[ps]);
-
-//         for (var j = 0; j < rules[ps][i].length; j++) {
-//          console.log('rules[ps][i]: ' + rules[ps][i]);
-//          console.log('rules[ps][i][j]: ' + rules[ps][i][j]);
-//             if(FC(rules, facts, rules[ps][i][j]) == true) {
-//                    valid = true;
-//             } else {
-//                valid = false;
-//             }   
-
-//        }
-
-//     if (valid) {
-//         console.log("ps added: " + ps);
-//         candidates.push(ps);
-//         return true;
-//     } 
-       
-//     }
-
-//     return valid;
-// }
-
 
     function BC(rules, facts, ps)
 	{
